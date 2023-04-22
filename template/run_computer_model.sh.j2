@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+##
+
+# run['idx'] is iteration variable
+# wc -l a batch recorder file
+
+if [ ! -f RUN_ITERS ]; then
+    ITERATION=0
+else
+    ITERATION=`wc -l RUN_ITERS | awk '{ print $1 }'`
+fi
+
+echo "Number of previous iterations $ITERATION"
+
+. ENVS
+
+ln -sf ../Manifest.toml
+ln -sf ../Project.toml
+ln -sf `realpath ../..`/shared.jl
+ln -sf `realpath ../..`/observe_sinusoid.jl
+ln -sf `realpath ../..`/run_computer_model.jl
+ln -sf `realpath ../..`/update_EKP.jl
+ln -sf `realpath ../output`
+
+echo "Iteration $ITERATION Model {{ run.idx }}"
+julia --project run_computer_model.jl {{ run.out_dir }} {{ run.data_path }} $ITERATION {{ run.idx + 1 }}
+
+echo -ne "\n{{ run.idx }}" >>RUN_ITERS
