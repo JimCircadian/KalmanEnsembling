@@ -1,4 +1,20 @@
 #!/usr/bin/env bash
+#SBATCH --output={{ run.dir }}/model.%j.%N.{{ run.seed }}.out
+#SBATCH --error={{ run.dir }}/model.%j.%N.{{ run.seed }}.err
+#SBATCH --chdir={{ run.dir }}
+{% if run.email != "someone@example.com" %}
+#SBATCH --mail-type=begin,end,fail,requeue
+#SBATCH --mail-user={{ run.email }}
+{% endif %}
+#SBATCH --time={{ run.length }}
+#SBATCH --job-name={{ run.id }}
+#SBATCH --nodes={{ run.nodes }}
+{% if run.cluster == "gpu" %}#SBATCH --gres=gpu:1{% endif %}
+#SBATCH --partition={{ run.cluster }}
+#SBATCH --account={{ run.cluster }}
+#SBATCH --cpus-per-task={{ run.ntasks }}
+#SBATCH --mem={{ run.mem }}
+
 ##
 
 # run['idx'] is iteration variable
