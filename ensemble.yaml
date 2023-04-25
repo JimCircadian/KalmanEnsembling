@@ -3,7 +3,7 @@ ensemble:
   vars:
     out_dir:    ../output
     data_path:  truth.jld2
-    max_iters:  2
+    max_iters:  3
 
   pre_process:          []
   post_process: 
@@ -23,8 +23,8 @@ ensemble:
     nodes:        1
     ntasks:       8
     length:       00:30:00
-    maxruns:      1
-    maxjobs:      1
+    maxruns:      5
+    maxjobs:      10
     repeat:       True
 
   batches:
@@ -33,7 +33,7 @@ ensemble:
       pre_batch:
         - name:   check
           args:
-            cmd:  '../check_max.sh 2'
+            cmd:  '../check_max.sh 3'
             fail: True
         - name:   execute
           args: 

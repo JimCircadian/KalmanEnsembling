@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-#SBATCH --output={{ run.dir }}/model.%j.%N.{{ run.seed }}.out
-#SBATCH --error={{ run.dir }}/model.%j.%N.{{ run.seed }}.err
+#SBATCH --output={{ run.dir }}/model.%j.%N.out
+#SBATCH --error={{ run.dir }}/model.%j.%N.err
 #SBATCH --chdir={{ run.dir }}
 {% if run.email != "someone@example.com" %}
 #SBATCH --mail-type=begin,end,fail,requeue
@@ -13,7 +13,7 @@
 #SBATCH --partition={{ run.cluster }}
 #SBATCH --account={{ run.cluster }}
 #SBATCH --cpus-per-task={{ run.ntasks }}
-#SBATCH --mem={{ run.mem }}
+#SBATCH --mem=128gb
 
 ##
 

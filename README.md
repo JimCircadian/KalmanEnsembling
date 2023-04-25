@@ -26,6 +26,8 @@ Ctrl+D
 
 # Back in bash
 model_ensemble -rt 1 -st 1 -ct 1 -p -v ensemble.yaml dummy
+# Or for SLURM
+model_ensemble -p -rt 30 -st 10 -ct 30 -v ensemble.yaml
 ```
 
 ## License
