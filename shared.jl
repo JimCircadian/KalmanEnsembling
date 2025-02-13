@@ -5,4 +5,5 @@ using Distributions
 using EnsembleKalmanProcesses
 using EnsembleKalmanProcesses.TOMLInterface
 using EnsembleKalmanProcesses.ParameterDistributions
+using EnsembleKalmanProcesses.Localizers
 const EKP = EnsembleKalmanProcesses

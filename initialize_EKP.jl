@@ -18,7 +18,7 @@ function main()
 
     # We construct the prior from file
     param_dict = TOML.parsefile(toml_path)
-    names = ["amplitude", "vert_shift"]
+    names = ["initial_thickness"]
     prior_vec = [get_parameter_distribution(param_dict, n) for n in names]
     prior = combine_distributions(prior_vec)
 
@@ -27,7 +27,7 @@ function main()
 
     # initialize ensemble Kalman inversion
     initial_ensemble = EKP.construct_initial_ensemble(rng_ekp, prior, N_ensemble)
-    eki = EKP.EnsembleKalmanProcess(initial_ensemble, y, Γ, Inversion(); rng = rng_ekp)
+    eki = EKP.EnsembleKalmanProcess(initial_ensemble, y, Γ, Inversion(); rng = rng_ekp, localization_method = SEC(3))
 
     # save the parameter ensemble and EKP
     save_parameter_ensemble(

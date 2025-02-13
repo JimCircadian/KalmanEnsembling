@@ -26,20 +26,21 @@ function main()
     # get parameters
     member_path = path_to_ensemble_member(output_dir, iteration, member)
     param_dict = TOML.parsefile(joinpath(member_path, "parameters.toml"))
-    names = ["amplitude", "vert_shift"]
+    names = ["initial_thickness"]
     params = get_parameter_values(param_dict, names)
 
     # get rng
-    @load data_path rng_model
+    #@load data_path rng_model
 
     # evaluate map with noise to create data
-    model_output = parameter_to_data_map(params, rng = rng_model)
+    #model_output = parameter_to_data_map(params, rng = rng_model)
+    model_output = parameter_to_data_map(params)
 
     output_path = joinpath(member_path, "output.jld2")
     @save output_path model_output
 
     #save rng
-    @save data_path rng_model
+    #@save data_path rng_model
 
 end
 

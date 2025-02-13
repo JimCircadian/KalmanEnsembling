@@ -3,7 +3,7 @@ ensemble:
   vars:
     out_dir:    ../output
     data_path:  truth.jld2
-    max_iters:  3
+    max_iters:  5
 
   pre_process:          []
   post_process: 
@@ -23,7 +23,7 @@ ensemble:
     nodes:        1
     ntasks:       8
     length:       00:30:00
-    maxruns:      5
+    maxruns:      10
     maxjobs:      10
     repeat:       True
 
@@ -33,7 +33,7 @@ ensemble:
       pre_batch:
         - name:   check
           args:
-            cmd:  '../check_max.sh 3'
+            cmd:  '../check_max.sh 5'
             fail: True
         - name:   execute
           args: 
@@ -53,9 +53,12 @@ ensemble:
             log:  True
         - name:   execute
           args:
-            cmd:  'julia --project ../initialize_EKP.jl output truth.jld2 eki.jld2 ../priors.toml 3 87653'
+           cmd:  'julia --project ../initialize_EKP.jl output truth.jld2 eki.jld2 ../priors.toml 4 87653'
+           log:  True
+
       pre_run:    []
       runs:
+        - {}
         - {}
         - {}
         - {}

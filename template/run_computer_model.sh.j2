@@ -39,6 +39,7 @@ ln -sf `realpath ../..`/update_EKP.jl
 ln -sf `realpath ../output`
 
 echo "Iteration $ITERATION Model {{ run.idx }}"
+#julia --project -e 'using Pkg; Pkg.add(PackageSpec(url="https://github.com/RJArthern/WAVI.jl.git",rev="ParallelDev"));Pkg.instantiate()'
 julia --project run_computer_model.jl {{ run.out_dir }} {{ run.data_path }} $ITERATION {{ run.idx + 1 }}
 
 echo -ne "\n{{ run.idx }}" >>RUN_ITERS
