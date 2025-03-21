@@ -49,11 +49,11 @@ ensemble:
             cmd:  'ln -s ../Project.toml'
         - name:   execute
           args:
-            cmd:  'julia --project ../generate_data.jl output truth.jld2 235487'
+            cmd:  '/data/hpcdata/users/jambyr/.juliaup/bin/julia --project ../generate_data.jl output truth.jld2 235487'
             log:  True
         - name:   execute
           args:
-           cmd:  'julia --project ../initialize_EKP.jl output truth.jld2 eki.jld2 ../priors.toml 10 87653'
+           cmd:  '/data/hpcdata/users/jambyr/.juliaup/bin/julia --project ../initialize_EKP.jl output truth.jld2 eki.jld2 ../priors.toml 10 87653'
            log:  True
 
       pre_run:    []
@@ -72,7 +72,7 @@ ensemble:
       post_batch: 
         - name:   execute
           args:
-            cmd:  'julia --project ../update_EKP.jl output eki.jld2 `wc -m <REPEAT`'
+            cmd:  '/data/hpcdata/users/jambyr/.juliaup/bin/julia --project ../update_EKP.jl output eki.jld2 `wc -m <REPEAT`'
             log:  True
         - name:   execute
           args:

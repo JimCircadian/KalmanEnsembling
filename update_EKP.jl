@@ -13,7 +13,7 @@ function main()
     # load current state 
     @load eki_path eki param_dict prior
     N_ensemble = eki.N_ens
-    dim_output = size(eki.observation_series.observations)[1] # size(eki.obs_mean)[1]
+    dim_output = 4 # size(eki.observation_series.observations)[1] # size(eki.obs_mean)[1]
 
     # load data from the ensemble
     G_ens = zeros(dim_output, N_ensemble)
